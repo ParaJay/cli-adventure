@@ -79,7 +79,7 @@ class Journal {
         }
 
         if(this.entries[key] >= 5) {
-            result += "\n" + advanced.toString().replaceAll(",", "\n");
+            result += "\n" + value.advanced.toString().replaceAll(",", "\n");
         }
 
         return result;
