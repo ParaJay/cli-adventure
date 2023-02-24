@@ -43,10 +43,10 @@ class Entity {
         let friendlyChance = 0;
 
         if(player.race == this.name) {
-            friendlyChance = 60 + player.useLuck();
+            friendlyChance = 60 + player.luck;
         } else {
             if(this.friendly) {
-                friendlyChance = 30 + player.useLuck();
+                friendlyChance = 30 + player.luck;
             }
         }
 
