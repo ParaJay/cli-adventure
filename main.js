@@ -8,6 +8,7 @@ const events = require("./scripts/events/events");
 const { player, initPlayer } = require("./scripts/player");
 const utils = require("./scripts/utils/utils.js");
 const { berry, meat, initFood, getItem } = require("./scripts/items/food");
+const {journal} = require("./scripts/journal");
 
 const { FindEvent } = require("./scripts/events/find");
 const { StarEvent } = require("./scripts/events/star");
@@ -41,6 +42,16 @@ async function main() {
         let direction = await prompt("move");
 
         await player.move(direction);
+    } else if(decision == "Journal") {
+        if(journal.hasEntries()) {
+            journal.createQuestion();
+
+            let entry = await prompt("journal");
+        
+            console.log(journal.getEntry(entry));
+        } else {
+            console.log("Journal has no entries");
+        }
     } else if(decision == "Eat") {
         let answers = [];
 
