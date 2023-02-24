@@ -15,7 +15,7 @@ function register(question) {
     return question;
 }
 
-createListQuestion("action", "Where would you like to do?", ["Move", "Eat", "Rest", "Forage", "Stats", "Exit"]);
+createListQuestion("action", "Where would you like to do?", ["Move", "Eat", "Rest", "Forage", "Journal", "Stats", "Exit"]);
 createListQuestion("move", "Where would you like to go?", ["North", "East", "South", "West"]);
 createListQuestion("exit", "Are you sure you want to exit? All progress will be lost!", ["Yes", "No"]);
 createBasicQuestion("name", "What is your name?");
