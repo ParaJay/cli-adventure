@@ -3,6 +3,7 @@ const {Range} = require("./utils/range");
 const events = require("./events/events");
 const {prompt} = require("./utils/inq");
 const {berry, lookup} = require("./items/food");
+const {journal} = require("./journal");
 
 const healthRanges = {
     hume: new Range(10, 16),
@@ -89,6 +90,8 @@ class Player {
 
         if(entity.health <= 0) {
             console.log("you killed the " + entity.name);
+
+            journal.addEntry(entity);
         }
     }
 
