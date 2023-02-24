@@ -26,6 +26,10 @@ async function runScript(promptMain, promptFunc, script, delay=800, output=true)
     }
 }
 
+function capitalize(string) {
+    return (string.charAt(0).toUpperCase() + string.slice(1));
+}
+
 function capitalizeArray(array, start=0, seperator="") {
     let result = "";
 
@@ -36,10 +40,10 @@ function capitalizeArray(array, start=0, seperator="") {
 
         if(result.length > 0) result += seperator;
 
-        result += (e.charAt(0).toUpperCase() + e.slice(1));
+        result += capitalize(e);
     }
 
     return result;
 }
 
-module.exports = { sleep, runScript, capitalizeArray }
+module.exports = { sleep, runScript, capitalize, capitalizeArray }
