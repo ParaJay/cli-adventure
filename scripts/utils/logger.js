@@ -11,6 +11,10 @@ function relog() {
     }
 }
 
+function clear() {
+    logs.splice(0, logs.length);
+}
+
 module.exports = {
-    logs, log, relog
+    logs, log, relog, clear
 }
