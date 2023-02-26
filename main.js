@@ -102,8 +102,6 @@ async function init() {
         "red", "green", "blue", "yellow", "cyan", "magenta"
     ]);
 
-    return;
-
     await utils.runScript(player, "set", ["",
         "you awake in an unfamiliar place", "dazed, your memory starts to fade...", "you must remember...",
         "prompt;name", "prompt;race",
