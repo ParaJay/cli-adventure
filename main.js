@@ -9,6 +9,9 @@ const { player, initPlayer } = require("./scripts/player");
 const utils = require("./scripts/utils/utils.js");
 const { berry, meat, initFood, getItem } = require("./scripts/items/food");
 const {journal} = require("./scripts/journal");
+const ascii = require("./scripts/utils/ascii");
+
+const logger = require("./scripts/utils/logger");
 
 const { FindEvent } = require("./scripts/events/find");
 const { StarEvent } = require("./scripts/events/star");
@@ -28,7 +31,7 @@ function initEvents() {
 
 async function main() {
     if(player.health <= 0) {
-        console.log("you died :(");
+        logger.log("you died :(");
         return;
     }
 
@@ -48,9 +51,9 @@ async function main() {
 
             let entry = await prompt("journal");
         
-            console.log(journal.getEntry(entry));
+            logger.log(journal.getEntry(entry));
         } else {
-            console.log("Journal has no entries");
+            logger.log("Journal has no entries");
         }
     } else if(decision == "Eat") {
         let answers = [];
@@ -65,7 +68,7 @@ async function main() {
 
             player.eat(getItem(food));
         } else {
-            console.log("you don't have any food");
+            logger.log("you don't have any food");
         }
     }  else {
         await eval(`player.${decision.toLowerCase()}();`);
@@ -95,9 +98,10 @@ async function init() {
     initEvents();
     processArguments();
 
-    console.log(args);
+    await ascii.writeText("CLI Adventure");
+    // await ascii.drawImage("fb.png");
 
-    await utils.runScript(player, "set", [
+    await utils.runScript(player, "set", ["",
         "you awake in an unfamiliar place", "dazed, your memory starts to fade...", "you must remember...",
         "prompt;name", "prompt;race",
         "you find a bag on the floor, inside is a dagger, a bow and an axe",
