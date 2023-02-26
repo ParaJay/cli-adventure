@@ -98,8 +98,11 @@ async function init() {
     initEvents();
     processArguments();
 
-    await ascii.writeText("CLI Adventure");
-    // await ascii.drawImage("fb.png");
+    await ascii.animateText("CLI Adventure", [
+        "red", "green", "blue", "yellow", "cyan", "magenta"
+    ]);
+
+    return;
 
     await utils.runScript(player, "set", ["",
         "you awake in an unfamiliar place", "dazed, your memory starts to fade...", "you must remember...",
