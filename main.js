@@ -5,9 +5,9 @@
 
 const { prompt, createListQuestion } = require("./scripts/utils/inq");
 const events = require("./scripts/events/events");
-const { player, initPlayer } = require("./scripts/player");
+const { player } = require("./scripts/player");
 const utils = require("./scripts/utils/utils.js");
-const { berry, meat, initFood, getItem } = require("./scripts/items/food");
+const { berry, meat, getItem } = require("./scripts/items/food");
 const {journal} = require("./scripts/journal");
 const ascii = require("./scripts/utils/ascii");
 
@@ -106,8 +106,6 @@ function processArguments() {
 }
 
 async function init() {
-    initFood();
-    initPlayer();
     initEvents();
     processArguments();
 

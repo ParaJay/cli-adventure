@@ -15,8 +15,6 @@ const lookup = {
     "Meat": meat
 }
 
-function initFood() { }
-
 function getItem(item) {
     return lookup[item];
 }
@@ -26,5 +24,5 @@ function random() {
 }
 
 module.exports = {
-    berry, meat, initFood, getItem, lookup, random
+    berry, meat, getItem, lookup, random
 }

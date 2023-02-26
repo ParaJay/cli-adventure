@@ -210,6 +210,4 @@ class Player {
 
 const player = new Player();
 
-function initPlayer() {}
-
-module.exports = { player, initPlayer, Player }
+module.exports = { player, Player }
