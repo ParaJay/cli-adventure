@@ -35,7 +35,7 @@ async function main() {
         return;
     }
 
-    let decision = await prompt("action");
+    let decision = await prompt("main");
 
     if(decision == "Exit") {
         let exit = await prompt("exit");
@@ -55,22 +55,37 @@ async function main() {
         } else {
             logger.log("Journal has no entries");
         }
-    } else if(decision == "Eat") {
-        let answers = [];
-
-        if(player.hasItem(berry)) answers.push("Berry");
-        if(player.hasItem(meat)) answers.push("Meat");
-
-        if(answers.length > 0) {
-            createListQuestion("eat", "what would you like to eat", answers);
-
-            let food = await prompt("eat");
-
-            player.eat(getItem(food));
+    } else if(decision == "Action") {
+        decision = await prompt("action");
+        if(decision == "Eat") {
+            let answers = [];
+    
+            if(player.hasItem(berry)) answers.push("Berry");
+            if(player.hasItem(meat)) answers.push("Meat");
+    
+            if(answers.length > 0) {
+                createListQuestion("eat", "what would you like to eat", answers);
+    
+                let food = await prompt("eat");
+    
+                player.eat(getItem(food));
+            } else {
+                logger.log("you don't have any food");
+            }
         } else {
-            logger.log("you don't have any food");
+            await eval(`player.${decision.toLowerCase()}();`);
         }
-    }  else {
+    } else if(decision == "Logs") {
+        let logDecision = await prompt("logs");
+
+        if(logDecision == "Clear Terminal") {
+            console.clear();
+        } else if(logDecision == "Relog") {
+            logger.relog();
+        } else if(logDecision == "Clear Logs") {
+            logger.clear();
+        }
+    }else {
         await eval(`player.${decision.toLowerCase()}();`);
     }
 
@@ -78,8 +93,6 @@ async function main() {
 }
 
 function processArguments() {
-    // let nodeArgs = process.execArgv;
-
     process.argv.slice(2).forEach((val, index, array) => {
         let normal = val.replace("--", "");
         let split = normal.split("=");
