@@ -9,4 +9,12 @@ describe("test journal functions", () => {
 
         expect(journal.hasEntries()).toBe(true);
     });
+    
+    test("test advanced journal info", () => {
+        for(let i = 0; i < 5; i++) {
+            journal.addEntry(entities.generate("Goblin"));
+        }
+
+        console.log(journal.getEntry("Goblin"));
+    })
 });
