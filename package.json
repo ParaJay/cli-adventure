@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "ascii-art": "^2.8.5",
-    "inquirer": "^8.0.0"
+    "inquirer": "^8.0.0",
+    "terminal-image": "^1.2.1"
   }
 }
