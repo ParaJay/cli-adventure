@@ -24,9 +24,9 @@ async function tryColour(message) {
     return message.replace(toColour, coloured);
 }
 
-function relog() {
+async function relog() {
     for(let i = 0; i < logs.length; i++) {
-        log(logs[i], false);
+        await log(logs[i], false);
     }
 }
 
