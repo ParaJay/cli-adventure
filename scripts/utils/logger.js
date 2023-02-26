@@ -1,8 +1,27 @@
 const logs = [];
 
-function log(message) {
+async function log(message) {
     logs.push(message);
+
+    while(message.includes("#c:")) {
+        message = await tryColour(message);
+    }
+
     console.log(message);
+}
+
+async function tryColour(message) {
+    let ascii = require("./ascii");
+
+    let split = message.split("#c:");
+    let val = split[1].split("]")[0];
+    let colour = val.split("[")[0];
+    val = val.split("[")[1];
+    let toColour = "#c:" + colour + "[" + val + "]";
+
+    let coloured = await ascii.colourText(val, colour);
+
+    return message.replace(toColour, coloured);
 }
 
 function relog() {
