@@ -1,7 +1,7 @@
 const logs = [];
 
-async function log(message) {
-    logs.push(message);
+async function log(message, push=true) {
+    if(push) logs.push(message);
 
     while(message.includes("#c:")) {
         message = await tryColour(message);
@@ -26,7 +26,7 @@ async function tryColour(message) {
 
 function relog() {
     for(let i = 0; i < logs.length; i++) {
-        console.log(logs[i]);
+        logger.log(logs[i], false);
     }
 }
 
