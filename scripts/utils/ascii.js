@@ -74,5 +74,5 @@ async function writeText(text, colour="white") {
 }
 
 module.exports = {
-    drawImage, writeText, animateText
+    drawImage, writeText, animateText, colourText
 }
