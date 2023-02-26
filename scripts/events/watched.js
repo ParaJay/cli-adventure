@@ -1,5 +1,6 @@
 const {Event} = require("./events.js");
 const {player} = require("../player");
+const logger = require("../utils/logger");
 
 class WatchedEvent extends Event {
 
@@ -8,7 +9,7 @@ class WatchedEvent extends Event {
     }
 
     handle(response) {
-        console.log("a strange feeling befalls you...almost as if you're being watched from afar...");
+        logger.log("a strange feeling befalls you...almost as if you're being watched from afar...");
         player.luck -= 20;
     }
 }

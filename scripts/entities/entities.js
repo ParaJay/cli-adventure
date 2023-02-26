@@ -2,6 +2,7 @@ const {Random} = require("../utils/random");
 const {Range} = require("../utils/range");
 const items = require("../items/items");
 const food = require("../items/food");
+const logger = require("../utils/logger");
 
 const entities = [
     "Wolf", "Hume", "Orc", "Elf", "Goblin", "Lion"
@@ -68,12 +69,12 @@ class Entity {
 
                 player.addItem(food.random(), amount);
 
-                console.log(this.name + " gave you " + amount + " " + f.name);
+                logger.log(this.name + " gave you " + amount + " " + f.name);
             } else {
-                console.log(this.name + " was pleased with the encounter and let you on your way");
+                logger.log(this.name + " was pleased with the encounter and let you on your way");
             }
         } else {
-            console.log(this.name + " got angry with the encounter and attacked!");
+            logger.log(this.name + " got angry with the encounter and attacked!");
 
             player.fight(this);
         }

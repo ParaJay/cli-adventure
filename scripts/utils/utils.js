@@ -1,4 +1,5 @@
 const {prompt} = require("./inq");
+const logger = require("./logger");
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,7 +17,7 @@ async function runScript(promptMain, promptFunc, script, delay=800, output=true)
             await eval(`${prompter}${promptFunc}(e.replace("prompt;", ""))`);
         } else {
             if(output == true) {
-                console.log(e); 
+                logger.log(e); 
             } else {
                 continue;
             }

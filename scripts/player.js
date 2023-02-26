@@ -4,6 +4,7 @@ const events = require("./events/events");
 const {prompt} = require("./utils/inq");
 const {berry, lookup} = require("./items/food");
 const {journal} = require("./journal");
+const logger = require("./utils/logger")
 
 const healthRanges = {
     hume: new Range(10, 16),
@@ -76,20 +77,20 @@ class Player {
 
                 entity.health -= attack;
 
-                console.log("you struck " + entity.name + " and did " + attack + " damage");
+                logger.log("you struck " + entity.name + " and did " + attack + " damage");
             } else {
                 let attack = entity.attack.random();
 
                 this.health -= attack;
 
-                console.log(entity.name + " struck you and did " + attack + " damage");
+                logger.log(entity.name + " struck you and did " + attack + " damage");
             }
 
             turn = turn == 0 ? 1 : 0;
         }
 
         if(entity.health <= 0) {
-            console.log("you killed the " + entity.name);
+            logger.log("you killed the " + entity.name);
 
             journal.addEntry(entity);
         }
@@ -103,21 +104,21 @@ class Player {
         let random = new Random().nextInt(100);
 
         if(random <= 40 + this.luck) {
-            console.log("you ran away");
+            logger.log("you ran away");
         } else {
-            console.log("you failed to ran away, " + this.entity + " is attacking!");
+            logger.log("you failed to ran away, " + this.entity + " is attacking!");
 
             this.fight(entity);
         }
     }
 
     leave() {
-        console.log("you walk away");
+        logger.log("you walk away");
     }
 
     async rest() {
         this.health += new Random().randint(4, 8);
-        console.log("you rest up");
+        logger.log("you rest up");
 
         await this.postAction();
     }
@@ -126,7 +127,7 @@ class Player {
         if(this.hasItem(item)) {
             this.addItem(item, -1);
 
-            console.log("you ate: " + item.name);
+            logger.log("you ate: " + item.name);
 
             this.health += item.health;
         }
@@ -165,13 +166,13 @@ class Player {
         let r = new Random().nextInt(100);
 
         if(r <= fail) {
-            console.log("failed to find anything");
+            logger.log("failed to find anything");
         } else {
             let amount = Math.floor((r / 2) / 10);
 
             this.addItem(berry, amount);
 
-            console.log("you found " + amount + " berries");
+            logger.log("you found " + amount + " berries");
         }
 
         await this.postAction();
@@ -182,7 +183,7 @@ class Player {
     }
 
     async move(direction) {
-        console.log("you moved: " + direction);
+        logger.log("you moved: " + direction);
 
         await this.postAction();
     }

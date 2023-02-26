@@ -1,5 +1,6 @@
 const {Event} = require("./events.js");
 const {player} = require("../player");
+const logger = require("../utils/logger");
 
 class FallEvent extends Event {
 
@@ -8,7 +9,7 @@ class FallEvent extends Event {
     }
 
     handle(response) {
-        console.log("you trip on a root and tumble to the ground...ouch");
+        logger.log("you trip on a root and tumble to the ground...ouch");
         player.health -= 10;
     }
 }

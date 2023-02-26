@@ -1,5 +1,6 @@
 const {createListQuestion} = require("./utils/inq");
 const {capitalize} = require("./utils/utils");
+const logger = require("./utils/logger");
 
 const info = {
     "goblin": {
@@ -59,11 +60,11 @@ class Journal {
         value++;
 
         if(value == 1) {
-            console.log("Added journal entry: " + entity.name);
+            logger.log("Added journal entry: " + entity.name);
         }
 
         if(value == 5) {
-            console.log("Updated journal entry: " + entity.name);
+            logger.log("Updated journal entry: " + entity.name);
         }
 
         this.entries[key] = value;
