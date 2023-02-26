@@ -14,8 +14,8 @@ class GiftEvent extends Event {
         this.question = this.#createGiftQuestion();
     }
 
-    handle(response) {
-        eval(`const {player} = require("../player"); player.${response.toLowerCase()}(this.found);`);
+    async handle(response) {
+        await eval(`const {player} = require("../player"); player.${response.toLowerCase()}(this.found);`);
     }
 
     #createGiftQuestion() {       

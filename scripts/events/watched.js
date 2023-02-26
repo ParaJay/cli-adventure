@@ -8,8 +8,8 @@ class WatchedEvent extends Event {
         super("star", null, 5);
     }
 
-    handle(response) {
-        logger.log("a strange feeling befalls you...almost as if you're being watched from afar...");
+    async handle(response) {
+        await logger.log("#c:green[a] #c:blue[strange feeling] #c:green[befalls you...almost as if you're being] #c:blue[watched] #c:green[from afar...]");
         player.luck -= 20;
     }
 }

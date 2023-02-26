@@ -68,7 +68,7 @@ class Player {
         return this.attack.random();
     }
 
-    fight(entity) {
+    async fight(entity) {
         let turn = new Random().nextInt(100) <= 50 ? 0 : 1;
 
         while(this.health > 0 && entity.health > 0) {
@@ -77,22 +77,22 @@ class Player {
 
                 entity.health -= attack;
 
-                logger.log("you struck " + entity.name + " and did " + attack + " damage");
+                await logger.log("#c:green[you] #c:blue[struck] #c:red[" + entity.name + "] #c:green[and did] #c:blue[" + attack + " damage]");
             } else {
                 let attack = entity.attack.random();
 
                 this.health -= attack;
 
-                logger.log(entity.name + " struck you and did " + attack + " damage");
+                await logger.log("#c:red[" + entity.name + "] #c:blue[struck] #c:green[you and did] #c:blue[" + attack + " damage]");
             }
 
             turn = turn == 0 ? 1 : 0;
         }
 
         if(entity.health <= 0) {
-            logger.log("you killed the " + entity.name);
+            await logger.log("#c:green[you] #c:blue[killed] #c:green[the] #c:red[" + entity.name + "]");
 
-            journal.addEntry(entity);
+            await journal.addEntry(entity);
         }
     }
 
@@ -100,34 +100,34 @@ class Player {
         await entity.interact(this);
     }
 
-    flee(entity) {
+    async flee(entity) {
         let random = new Random().nextInt(100);
 
         if(random <= 40 + this.luck) {
-            logger.log("you ran away");
+            await logger.log("#c:green[you ran away]");
         } else {
-            logger.log("you failed to ran away, " + this.entity + " is attacking!");
+            await logger.log("#c:green[you] #c:red[failed] #c:green[to ran away,] #c:red[" + this.entity + "] #c:green[is] #c:red[attacking!]");
 
-            this.fight(entity);
+            await this.fight(entity);
         }
     }
 
-    leave() {
-        logger.log("you walk away");
+    async leave() {
+        await logger.log("#c:green[you walk away]");
     }
 
     async rest() {
         this.health += new Random().randint(4, 8);
-        logger.log("you rest up");
+        await logger.log("#c:green[you rest up]");
 
         await this.postAction();
     }
 
-    eat(item) {
+    async eat(item) {
         if(this.hasItem(item)) {
             this.addItem(item, -1);
 
-            logger.log("you ate: " + item.name);
+            await logger.log("#c:green[you ate:] #c:blue[" + item.name + "]");
 
             this.health += item.health;
         }
@@ -166,13 +166,13 @@ class Player {
         let r = new Random().nextInt(100);
 
         if(r <= fail) {
-            logger.log("failed to find anything");
+            await logger.log("#c:red[failed to find anything]");
         } else {
             let amount = Math.floor((r / 2) / 10);
 
             this.addItem(berry, amount);
 
-            logger.log("you found " + amount + " berries");
+            await logger.log(`#c:green[you found] #c:blue[${amount} berries]`);
         }
 
         await this.postAction();
@@ -183,7 +183,7 @@ class Player {
     }
 
     async move(direction) {
-        logger.log("you moved: " + direction);
+        await logger.log(`#c:green[you moved:] #c:blue[${direction}]`);
 
         await this.postAction();
     }

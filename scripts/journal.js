@@ -51,7 +51,7 @@ class Journal {
         return false;
     }
 
-    addEntry(entity) {
+    async addEntry(entity) {
         let key = entity.name.toLowerCase();
         let value = this.entries[key];
         
@@ -60,11 +60,11 @@ class Journal {
         value++;
 
         if(value == 1) {
-            logger.log("Added journal entry: " + entity.name);
+            await logger.log("#c:green[Added journal entry:] #c:blue[" + entity.name + "]");
         }
 
         if(value == 5) {
-            logger.log("Updated journal entry: " + entity.name);
+            await logger.log("#c:green[Updated journal entry:] #c:blue[" + entity.name + "]");
         }
 
         this.entries[key] = value;

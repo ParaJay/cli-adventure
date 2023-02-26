@@ -68,7 +68,7 @@ async function main() {
     
                 let food = await prompt("eat");
     
-                player.eat(getItem(food));
+                await player.eat(getItem(food));
             } else {
                 logger.log("you don't have any food");
             }
@@ -116,11 +116,11 @@ async function init() {
     ], args.animationDelay);
 
     await utils.runScript(player, "set", ["",
-        "you awake in an unfamiliar place", "dazed, your memory starts to fade...", "you must remember...",
+        "#c:green[you] #c:blue[awake] #c:green[in an unfamiliar place]", "#c:green[dazed, your memory starts to fade...]", "#c:green[you must remember...]",
         "prompt;name", "prompt;race",
-        "you find a bag on the floor, inside is a dagger, a bow and an axe",
+        "#c:green[you find a] #c:blue[bag] #c:green[on the floor, inside is a] #c:blue[dagger], #c:green[a] #c:blue[bow] #c:green[and an] #c:blue[axe]",
         "prompt;weapon",
-        "you must find a way"
+        "#c:green[you must find a way]"
     ], args.scriptDelay, args.scriptOutput);
 
     player.init();

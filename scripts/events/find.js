@@ -21,8 +21,8 @@ class FindEvent extends Event {
         return this;
     }
 
-    handle(response) {
-        eval(`player.${response.toLowerCase()}(this.found);`);
+    async handle(response) {
+        await eval(`player.${response.toLowerCase()}(this.found);`);
     }
 
     #createFindQuestion() {

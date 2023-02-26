@@ -17,7 +17,7 @@ async function runScript(promptMain, promptFunc, script, delay=800, output=true)
             await eval(`${prompter}${promptFunc}(e.replace("prompt;", ""))`);
         } else {
             if(output == true) {
-                logger.log(e); 
+                await logger.log(e); 
             } else {
                 continue;
             }

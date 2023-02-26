@@ -8,8 +8,8 @@ class StarEvent extends Event {
         super("star", null, 5);
     }
 
-    handle(response) {
-        logger.log("you look up at the night sky and see a shooting star, you feel inspired");
+    async handle(response) {
+        await logger.log("#c:green[you look up at the] #c:blue[night sky] #c:green[and see a] #c:blue[shooting star]#c:green[, you feel] #c:blue[inspired]");
         player.health += 20;
         player.luck += 20;
     }

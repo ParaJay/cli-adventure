@@ -8,8 +8,8 @@ class FallEvent extends Event {
         super("fall", null, 10);
     }
 
-    handle(response) {
-        logger.log("you trip on a root and tumble to the ground...ouch");
+    async handle(response) {
+        await logger.log("#c:green[you] #c:blue[trip] #c:green[on a] #c:blue[root] #c:green[and] #c:blue[tumble] #c:green[to the] #c:blue[ground]#c:blue[...]#c:red[ouch]");
         player.health -= 10;
     }
 }
