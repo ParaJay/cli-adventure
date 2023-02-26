@@ -81,7 +81,7 @@ async function main() {
         if(logDecision == "Clear Terminal") {
             console.clear();
         } else if(logDecision == "Relog") {
-            logger.relog();
+            await logger.relog();
         } else if(logDecision == "Clear Logs") {
             logger.clear();
         }
