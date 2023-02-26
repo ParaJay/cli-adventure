@@ -69,12 +69,12 @@ class Entity {
 
                 player.addItem(food.random(), amount);
 
-                logger.log(this.name + " gave you " + amount + " " + f.name);
+                logger.log("#c:green[" + this.name + " gave you] #c:blue[" + amount + " " + f.name + "]");
             } else {
-                logger.log(this.name + " was pleased with the encounter and let you on your way");
+                logger.log("#c:green[" + this.name + " was] #c:blue[pleased] #c:green[with the encounter and let you on your way]");
             }
         } else {
-            logger.log(this.name + " got angry with the encounter and attacked!");
+            logger.log("#c:red[" + this.name + "] #c:green[got] #c:red[angry] #c:green[with the encounter and] #c:red[attacked!]");
 
             player.fight(this);
         }
