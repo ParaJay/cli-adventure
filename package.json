@@ -9,12 +9,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/ascii-art": "^1.4.0",
     "@types/inquirer": "^9.0.3",
     "@types/jest": "^29.4.0",
     "jest": "^29.4.3"
   },
-
   "dependencies": {
+    "ascii-art": "^2.8.5",
     "inquirer": "^8.0.0"
   }
 }
