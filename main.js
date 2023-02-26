@@ -51,7 +51,7 @@ async function main() {
 
             let entry = await prompt("journal");
         
-            await logger.log("#c:green[" + journal.getEntry(entry) + "]");
+            await logger.log("#c:green[" + (await journal.getEntry(entry)) + "]");
         } else {
             await logger.log("#c:red[Journal has no entries]");
         }
