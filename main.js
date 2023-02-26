@@ -31,7 +31,7 @@ function initEvents() {
 
 async function main() {
     if(player.health <= 0) {
-        logger.log("you died :(");
+        await logger.log("#c:red[you died :(]");
         return;
     }
 
@@ -51,9 +51,9 @@ async function main() {
 
             let entry = await prompt("journal");
         
-            logger.log(journal.getEntry(entry));
+            await logger.log("#c:green[" + journal.getEntry(entry) + "]");
         } else {
-            logger.log("Journal has no entries");
+            await logger.log("#c:red[Journal has no entries]");
         }
     } else if(decision == "Action") {
         decision = await prompt("action");
@@ -70,7 +70,7 @@ async function main() {
     
                 await player.eat(getItem(food));
             } else {
-                logger.log("you don't have any food");
+                await logger.log("#c:red[you don't have any food]");
             }
         } else {
             await eval(`player.${decision.toLowerCase()}();`);
