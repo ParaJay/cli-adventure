@@ -1,6 +1,7 @@
 const {createListQuestion} = require("./utils/inq");
-const {capitalize} = require("./utils/utils");
+const utils = require("./utils/utils");
 const logger = require("./utils/logger");
+const images = require("./utils/images");
 
 const info = {
     "goblin": {
@@ -70,7 +71,7 @@ class Journal {
         this.entries[key] = value;
     }
 
-    getEntry(entity) {
+    async getEntry(entity) {
         let key = entity.toLowerCase();
         let value = info[key];
         let result;
@@ -81,6 +82,8 @@ class Journal {
 
         if(this.entries[key] >= 5) {
             result += "\n" + value.advanced.toString().replaceAll(",", "\n");
+
+            console.log(await images.getImage(key));
         }
 
         return result;
@@ -91,7 +94,7 @@ class Journal {
             let choices = [];
 
             Object.keys(this.entries).forEach(e => {
-                choices.push(capitalize(e));
+                choices.push(utils.capitalize(e));
             });
 
             createListQuestion("journal", "What entry would you like to view?", choices);
