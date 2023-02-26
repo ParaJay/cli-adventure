@@ -12,9 +12,12 @@ async function drawImage(imgPath) {
         height: 20
     });
 
-    image.write((err, rendered) => {
-        logger.log(rendered);
+    return new Promise((resolve) => {
+        image.write((err, rendered) => {
+            resolve(logger.log(rendered));
+        });
     });
+    
 }
 
 async function colourText(text, colour) {
