@@ -19,7 +19,7 @@ const { EncounterEvent } = require("./scripts/events/encounter");
 const { FallEvent } = require("./scripts/events/fall");
 const { WatchedEvent } = require("./scripts/events/watched");
 
-const args = { "scriptDelay": 800, "scriptOutput": true };
+const args = { "scriptDelay": 800, "scriptOutput": true, "animationDelay": 200 };
 
 function initEvents() {
     events.register(new EncounterEvent());
@@ -113,7 +113,7 @@ async function init() {
 
     await ascii.animateText("CLI Adventure", [
         "red", "green", "blue", "yellow", "cyan", "magenta"
-    ]);
+    ], args.animationDelay);
 
     await utils.runScript(player, "set", ["",
         "you awake in an unfamiliar place", "dazed, your memory starts to fade...", "you must remember...",
