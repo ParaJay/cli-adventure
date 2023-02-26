@@ -26,7 +26,7 @@ async function tryColour(message) {
 
 function relog() {
     for(let i = 0; i < logs.length; i++) {
-        logger.log(logs[i], false);
+        log(logs[i], false);
     }
 }
 
