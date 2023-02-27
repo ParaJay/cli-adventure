@@ -1,5 +1,6 @@
 const {Random} = require("../utils/random");
 const {Range} = require("../utils/range");
+const utils = require("../utils/utils");
 
 const items = [
     "Helmet", "Chestplate", "Gauntlets", "Greeves", "Boots"
@@ -16,6 +17,7 @@ const ranges = {
 class Item {
     constructor(name) {
         this.name = name;
+        this.type = utils.capitalize(name);
         this.rating = ranges[this.name.toLowerCase()].random();
     }
 }
