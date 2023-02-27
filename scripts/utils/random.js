@@ -25,8 +25,12 @@ class Random {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
+    intFromArray(array) {
+        return this.nextInt(array.length - 1);
+    }
+
     fromArray(array) {
-        return array[this.nextInt(array.length - 1)]
+        return array[this.intFromArray(array)];
     }
 }
 
