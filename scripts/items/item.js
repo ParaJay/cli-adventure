@@ -35,5 +35,5 @@ function register(item) {
 }
 
 module.exports = {
-    Item, register, lookup
+    Item, register, lookup, random
 }
