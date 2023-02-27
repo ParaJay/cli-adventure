@@ -6,32 +6,32 @@ const images = require("./utils/images");
 const info = {
     "goblin": {
         basic: "Goblins are a mean-spirited race of beings. Any interaction with them ends in bloodshed",
-        advanced: ["Health: 7-10", "Attack: 2-5"]
+        advanced: ["Health: 7-10", "Attack: 2-5", "Defence: 1-3"]
     },
 
     "wolf": {
         basic: "Wild Wolves are quick, agile and very aggressive.",
-        advanced: ["Health: 5-9", "Attack: 3-6"]
+        advanced: ["Health: 5-9", "Attack: 3-6", "Defence: 2-4"]
     },
 
     "lion": {
         basic: "Lions are extremely strong and very aggressive.",
-        advanced: ["Health: 8-12", "Attack: 5-7"]
+        advanced: ["Health: 8-12", "Attack: 5-7", "Defence: 2-5"]
     },
 
     "hume": {
         basic: "Hume",
-        advanced: ["Health: 10-15", "Attack: 4-6"]
+        advanced: ["Health: 10-15", "Attack: 4-6", "Defence: 1-4"]
     },
 
     "elf": {
         basic: "Master sharpshooters, extremely proficient with a bow.",
-        advanced: ["Health: 10-13", "Attack: 4-7"]
+        advanced: ["Health: 10-13", "Attack: 4-7", "Defence: 2-4"]
     },
 
     "orc": {
         basic: "Strong brutish beings. Extremely proficient with an axe, can hold two-handed weapons in one hand.",
-        advanced: ["Health: 12-17", "Attack: 5-9"]
+        advanced: ["Health: 12-17", "Attack: 5-9", "Defence: 3-5"]
     }
 }
 
