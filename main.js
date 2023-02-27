@@ -18,6 +18,7 @@ const { StarEvent } = require("./scripts/events/star");
 const { EncounterEvent } = require("./scripts/events/encounter");
 const { FallEvent } = require("./scripts/events/fall");
 const { WatchedEvent } = require("./scripts/events/watched");
+const { HouseEvent } = require("./scripts/events/house");
 
 const args = { "scriptDelay": 800, "scriptOutput": true, "animationDelay": 200 };
 
@@ -27,6 +28,7 @@ function initEvents() {
     events.register(new StarEvent());
     events.register(new FallEvent());
     events.register(new WatchedEvent());
+    events.register(new HouseEvent());
 }
 
 async function main() {
