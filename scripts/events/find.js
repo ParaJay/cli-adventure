@@ -1,5 +1,5 @@
 const {Event} = require("./events.js");
-const items = require("../items/items");
+const armour = require("../items/armour");
 const {createListQuestion} = require("../utils/inq");
 const {player} = require("../player");
 
@@ -26,7 +26,7 @@ class FindEvent extends Event {
     }
 
     #createFindQuestion() {
-        this.found = items.random();
+        this.found = armour.random();
         
         return createListQuestion("find", `You found a ${this.found.name} with a rating of ${this.found.rating}, what do you want to do?`, choices);
     }

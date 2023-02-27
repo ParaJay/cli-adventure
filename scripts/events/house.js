@@ -1,5 +1,5 @@
 const {Event} = require("./events.js");
-const items = require("../items/items");
+const armour = require("../items/armour");
 const {createListQuestion, prompt} = require("../utils/inq");
 const { Random } = require("../utils/random.js");
 const logger = require("../utils/logger");
@@ -63,6 +63,12 @@ class HouseEvent extends Event {
         return result;
     }
 
+    /*
+        TODO: room contents
+            Workshop: Weapons
+            Store Room: Food
+            Laundry: Armour
+    */
     //TODO: exclusions so Workshop cannot be connected to Bathroom for example
     generate() {
         this.currentRoom = "Hallway";
@@ -150,6 +156,8 @@ class HouseEvent extends Event {
 
         if(decision == "Leave") {
             await logger.log("#c:green[you leave the house]");
+        } else if("Inspect") {
+            //TODO: show contents
         } else {
             if(this.house.floors[decision]) {
                 this.currentFloor = decision;

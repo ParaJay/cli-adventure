@@ -1,5 +1,5 @@
 const {Event} = require("./events.js");
-const items = require("../items/items");
+const armour = require("../items/armour");
 const {createListQuestion} = require("../utils/inq");
 
 const choices = ["Equip", "Leave"];
