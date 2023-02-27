@@ -5,11 +5,18 @@ const {prompt} = require("./utils/inq");
 const {berry, lookup} = require("./items/food");
 const {journal} = require("./journal");
 const logger = require("./utils/logger")
+const {Inventory} = require("./items/inventory");
 
 const healthRanges = {
     hume: new Range(10, 16),
     orc: new Range(15, 22),
     elf: new Range(12, 15),
+}
+
+const defenceRanges = {
+    hume: new Range(1, 4),
+    orc: new Range(3, 5),
+    elf: new Range(2, 4)
 }
 
 const weaponRanges = {
@@ -32,8 +39,8 @@ class Player {
         this.race = "";
         this.weapon = "";
         this.health = 20;
-        this.equipment = [];
-        this.items = {};
+        this.equipment = [undefined, undefined, undefined, undefined, undefined];
+        this.inventory = new Inventory();
         this.luck = 0;
     }
 
@@ -43,6 +50,7 @@ class Player {
 
         this.health = healthRanges[sh].random();
         this.attack = weaponRanges[wlc];
+        this.defence = defenceRanges[sh].random();
 
         if(weaponRace[wlc] == sh) {
             this.attack.min *= 1.2;
@@ -56,12 +64,13 @@ class Player {
         let equipped = this.equipment[index];
 
         if(equipped) {
-            this.health -= equipped.rating;
+            console.log(equipped.name);
+            this.defence -= equipped.rating;
         }
 
         this.equipment[index] = item;
 
-        this.health += item.rating;
+        this.defence += item.rating;
     }
 
     getDamage() {
@@ -75,11 +84,15 @@ class Player {
             if(turn == 0) {
                 let attack = this.getDamage();
 
+                attack = Math.round(attack - (entity.defence / attack));
+
                 entity.health -= attack;
 
                 await logger.log("#c:green[you] #c:blue[struck] #c:red[" + entity.name + "] #c:green[and did] #c:blue[" + attack + " damage]");
             } else {
                 let attack = entity.attack.random();
+
+                attack = Math.round(attack - (this.defence / attack));
 
                 this.health -= attack;
 
@@ -136,18 +149,11 @@ class Player {
     }
 
     hasItem(item) {
-        let amount = this.items[item.name];
-
-        if(amount && amount > 0) return true;
-
-        return false;
+        return this.inventory.hasItem(item);
     }
 
     addItem(item, amount=1) {
-        let owned = this.items[item.name];
-        let currentAmount = this.hasItem(item) ? owned : 0;
-
-        this.items[item.name] = amount + currentAmount;
+        this.inventory.addItem(item, amount);
     }
 
     async gift(item) {
