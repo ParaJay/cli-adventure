@@ -1,4 +1,4 @@
-const items = require("../scripts/items/items");
+const items = require("../scripts/items/armour");
 const player = require("../scripts/player");
 
 function testRange(name, min, max) {
