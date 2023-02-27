@@ -106,7 +106,7 @@ class Player {
         if(random <= 40 + this.luck) {
             await logger.log("#c:green[you ran away]");
         } else {
-            await logger.log("#c:green[you] #c:red[failed] #c:green[to ran away,] #c:red[" + this.entity + "] #c:green[is] #c:red[attacking!]");
+            await logger.log("#c:green[you] #c:red[failed] #c:green[to ran away,] #c:red[" + entity.name + "] #c:green[is] #c:red[attacking!]");
 
             await this.fight(entity);
         }
