@@ -17,6 +17,14 @@ class Inventory {
 
         this.items[item.name] = amount + currentAmount;
     }
+
+    count(item) {
+        if(this.hasItem(item)) {
+            return this.items[item.name];
+        } else {
+            return 0;
+        }
+    }
 }
 
 module.exports = {
