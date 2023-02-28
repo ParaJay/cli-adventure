@@ -16,10 +16,10 @@ async function tryColour(message) {
     let split = message.split("#c:");
     let val = split[1].split("]")[0];
     let colour = val.split("[")[0];
-    val = val.split("[")[1];
-    let toColour = "#c:" + colour + "[" + val + "]";
+    let text = val.split("[")[1];
+    let toColour = "#c:" + colour + "[" + text + "]";
 
-    let coloured = await ascii.colourText(val, colour);
+    let coloured = await ascii.colourText(text, colour);
 
     return message.replace(toColour, coloured);
 }
