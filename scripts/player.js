@@ -6,8 +6,7 @@ const {journal} = require("./journal");
 const logger = require("./utils/logger")
 const {Inventory} = require("./items/inventory");
 const { ranges, weaponRace } = require("./utils/consts");
-
-const equipmentList = ["Helmet", "Chestplate", "Gauntlets", "Greeves", "Boots"];
+const { armour } = require("./items/armour");
 
 class Player {
     constructor() {
@@ -35,7 +34,7 @@ class Player {
     }
 
     equip(item) {
-        let index = equipmentList.indexOf(item.type);
+        let index = armour.indexOf(item.type);
 
         let equipped = this.equipment[index];
 
