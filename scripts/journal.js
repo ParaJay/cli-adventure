@@ -41,15 +41,7 @@ class Journal {
     }
 
     hasEntries() {
-        let keys = Object.keys(this.entries);
-
-        for(let i = 0; i < keys.length; i++) {
-            if(this.entries[keys[i]] > 0) {
-                return true;
-             }
-        }
-
-        return false;
+        return Object.keys(this.entries).filter(e => this.entries[e] > 0).length > 0;
     }
 
     async addEntry(entity) {
@@ -60,13 +52,12 @@ class Journal {
 
         value++;
 
-        if(value == 1) {
-            await logger.log("#c:green[Added journal entry:] #c:blue[" + entity.name + "]");
-        }
+        let text;
 
-        if(value == 5) {
-            await logger.log("#c:green[Updated journal entry:] #c:blue[" + entity.name + "]");
-        }
+        if(value == 1) text = "Added";
+        if(value == 5) text = "Updated";
+
+        if(text) await logger.log(`#c:green[${text} journal entry:] #c:blue[${entity.name}]`);
 
         this.entries[key] = value;
     }
@@ -93,9 +84,7 @@ class Journal {
         if(this.hasEntries()) {
             let choices = [];
 
-            Object.keys(this.entries).forEach(e => {
-                choices.push(utils.capitalize(e));
-            });
+            Object.keys(this.entries).forEach(e => choices.push(utils.capitalize(e)));
 
             createListQuestion("journal", "What entry would you like to view?", choices);
         }
