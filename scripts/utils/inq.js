@@ -10,6 +10,10 @@ function createBasicQuestion(key, message) {
     return register({key: key, name: "decision", message: message});
 }
 
+function createConfirmQuestion(key, message) {
+    return createListQuestion(key, message, ["Yes", "No"]);
+}
+
 function register(question) {
     questions[question.key] = question;
 
@@ -19,7 +23,7 @@ function register(question) {
 createListQuestion("main", generic, ["Move", "Action", "Journal", "Stats", "Logs", "Exit"]);
 createListQuestion("action", generic, ["Eat", "Rest", "Forage"]);
 createListQuestion("move", "Where would you like to go?", ["North", "East", "South", "West"]);
-createListQuestion("exit", "Are you sure you want to exit? All progress will be lost!", ["Yes", "No"]);
+createConfirmQuestion("exit", "Are you sure you want to exit? All progress will be lost!");
 createBasicQuestion("name", "What is your name?");
 createListQuestion("weapon", "What weapon do you choose?", ["Dagger", "Bow", "Axe"]);
 createListQuestion("race", "What is your race?", ["Hume", "Elf", "Orc"]);
@@ -39,4 +43,4 @@ async function prompt(questionName) {
     return response;
 }
 
-module.exports = { createListQuestion, createBasicQuestion, prompt }
+module.exports = { createListQuestion, createBasicQuestion, createConfirmQuestion, prompt }
