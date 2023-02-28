@@ -4,11 +4,7 @@ class Inventory {
     }
 
     hasItem(item) {
-        let amount = this.items[item.name];
-
-        if(amount && amount > 0) return true;
-
-        return false;
+        return this.count(item) > 0;
     }
 
     addItem(item, amount=1) {
@@ -19,11 +15,9 @@ class Inventory {
     }
 
     count(item) {
-        if(this.hasItem(item)) {
-            return this.items[item.name];
-        } else {
-            return 0;
-        }
+        let amount = this.items[item.name];
+
+        return amount ? amount : 0;
     }
 }
 
