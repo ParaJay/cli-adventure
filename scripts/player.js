@@ -7,6 +7,7 @@ const logger = require("./utils/logger")
 const {Inventory} = require("./items/inventory");
 const { ranges, weaponRace } = require("./utils/consts");
 const { armour } = require("./items/armour");
+const items = require("./items/item");
 
 class Player {
     constructor() {
@@ -20,20 +21,27 @@ class Player {
     }
 
     init() {
+        this.weapon = items.lookup(this.weapon);
+
+        this.equipWeapon(this.weapon);
+
         let sh = this.race.toLowerCase();
-        let wlc = this.weapon.toLowerCase();
 
         this.health = ranges.playerHealth[sh].random();
-        this.attack = ranges.weapons[wlc];
         this.defence = ranges.defence[sh].random();
-
-        if(weaponRace[wlc] == sh) {
-            this.attack.min *= 1.2;
-            this.attack.max *= 1.2;
-        }
     }
 
     equip(item) {
+        if(item.getType() == "Armour") {
+            this.equipArmour(item);
+        } else if(item.getType() == "Weapon") {
+            this.equipWeapon(item);
+        } else {
+            throw TypeError(item + " is not valid equipment");
+        }
+    }
+
+    equipArmour(item) {
         let index = armour.indexOf(item.type);
 
         let equipped = this.equipment[index];
@@ -43,6 +51,16 @@ class Player {
         this.equipment[index] = item;
 
         this.defence += item.rating;
+    }
+
+    equipWeapon(item) {
+        this.weapon = item;
+        this.attack = item.attack;
+
+        if(weaponRace[item.type] == this.race.toLowerCase()) {
+            this.attack.min *= 1.2;
+            this.attack.max *= 1.2;
+        }
     }
 
     getDamage() {
