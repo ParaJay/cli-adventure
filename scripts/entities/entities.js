@@ -47,7 +47,7 @@ class Entity {
                 let amount = Math.floor((guideRandom / 2) / 10);
                 let f = food.random();
 
-                player.addItem(food.random(), amount);
+                player.inventory.addItem(food.random(), amount);
 
                 logger.log("#c:green[" + this.name + " gave you] #c:blue[" + amount + " " + f.name + "]");
             } else {

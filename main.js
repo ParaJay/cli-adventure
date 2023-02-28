@@ -64,8 +64,8 @@ async function main() {
         if(decision == "Eat") {
             let answers = [];
     
-            if(player.hasItem(berry)) answers.push("Berry");
-            if(player.hasItem(meat)) answers.push("Meat");
+            if(player.inventory.hasItem(berry)) answers.push("Berry");
+            if(player.inventory.hasItem(meat)) answers.push("Meat");
     
             if(answers.length > 0) {
                 createListQuestion("eat", "what would you like to eat", answers);

@@ -109,8 +109,8 @@ class Player {
     }
 
     async eat(item) {
-        if(this.hasItem(item)) {
-            this.addItem(item, -1);
+        if(this.inventory.hasItem(item)) {
+            this.inventory.addItem(item, -1);
 
             await logger.log("#c:green[you ate:] #c:blue[" + item.name + "]");
 
@@ -120,14 +120,6 @@ class Player {
         }
 
         //TODO: random event for food poisoning
-    }
-
-    hasItem(item) {
-        return this.inventory.hasItem(item);
-    }
-
-    addItem(item, amount=1) {
-        this.inventory.addItem(item, amount);
     }
 
     async gift(item) {
@@ -150,7 +142,7 @@ class Player {
         } else {
             let amount = Math.floor((r / 2) / 10);
 
-            this.addItem(berry, amount);
+            this.inventory.addItem(berry, amount);
 
             await logger.log(`#c:green[you found] #c:blue[${amount} berries]`);
         }
