@@ -39,10 +39,7 @@ class Player {
 
         let equipped = this.equipment[index];
 
-        if(equipped) {
-            console.log(equipped.name);
-            this.defence -= equipped.rating;
-        }
+        if(equipped) this.defence -= equipped.rating;
 
         this.equipment[index] = item;
 
@@ -53,24 +50,25 @@ class Player {
         return this.attack.random();
     }
 
+    #attack(a, b) {
+        let damage = a.attack.random();
+        let att = Math.round(damage - (b.defence / damage));
+
+        b.health -= att;
+
+        return att;
+    }
+
     async fight(entity) {
         let turn = new Random().nextInt(100) <= 50 ? 0 : 1;
 
         while(this.health > 0 && entity.health > 0) {
             if(turn == 0) {
-                let attack = this.getDamage();
-
-                attack = Math.round(attack - (entity.defence / attack));
-
-                entity.health -= attack;
+                let attack = this.#attack(this, entity);
 
                 await logger.log("#c:green[you] #c:blue[struck] #c:red[" + entity.name + "] #c:green[and did] #c:blue[" + attack + " damage]");
             } else {
-                let attack = entity.attack.random();
-
-                attack = Math.round(attack - (this.defence / attack));
-
-                this.health -= attack;
+                let attack = this.#attack(entity, this);
 
                 await logger.log("#c:red[" + entity.name + "] #c:blue[struck] #c:green[you and did] #c:blue[" + attack + " damage]");
             }
@@ -183,10 +181,8 @@ class Player {
         }
     }
 
-    async set(key) {
-        let val = await eval(`prompt('${key}');`);
-    
-        this[key] = val;
+    async set(key) {   
+        this[key] = await eval(`prompt('${key}');`);
     }
 }
 

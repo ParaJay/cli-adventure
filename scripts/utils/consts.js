@@ -1,8 +1,12 @@
 const { Range } = require("./range");
 
+const five9 = new Range(5, 9);
+const two4 = new Range(2, 4);
+const two5 = new Range(2, 5);
+
 const ranges = {
     entityHealth: {
-        wolf: new Range(5, 9),
+        wolf: five9,
         hume: new Range(10, 15),
         orc: new Range(12, 17),
         elf: new Range(10, 13),
@@ -13,23 +17,23 @@ const ranges = {
     attack: {
         wolf: new Range(3, 6),
         hume: new Range(4, 6),
-        orc: new Range(5, 9),
+        orc: five9,
         elf: new Range(4, 7),
-        goblin: new Range(2, 5),
+        goblin: two5,
         lion: new Range(5, 7)
     },
 
     defence: {
-        wolf: new Range(2, 4),
+        wolf: two4,
         hume: new Range(1, 4),
         orc: new Range(3, 5),
-        elf: new Range(2, 4),
+        elf: two4,
         goblin: new Range(1, 3),
-        lion: new Range(2, 5)
+        lion: two5
     },
 
     weapons: {
-        dagger: new Range(2, 5),
+        dagger: two5,
         bow: new Range(3, 6),
         axe: new Range(4, 8)
     },
