@@ -1,4 +1,3 @@
-const { Random } = require("../utils/random");
 const items = require("./item");
 
 class Food extends items.Item {
@@ -16,7 +15,7 @@ items.register(berry);
 items.register(meat);
 
 function getItem(item) {
-    return items.lookup[item];
+    return items.lookup(item);
 }
 
 function random() {
