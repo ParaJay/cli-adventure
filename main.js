@@ -77,7 +77,7 @@ async function main() {
                 await logger.log("#c:red[you don't have any food]");
             }
         } else {
-            await eval(`player.${decision.toLowerCase()}();`);
+            await eval(`player.action("${decision.toLowerCase()}");`);
         }
     } else if(decision == "Logs") {
         let logDecision = await prompt("logs");
