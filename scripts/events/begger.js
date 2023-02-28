@@ -1,13 +1,11 @@
 const {Event} = require("./events.js");
 const armour = require("../items/armour");
-const {createListQuestion, prompt} = require("../utils/inq");
+const {createConfirmQuestion, prompt} = require("../utils/inq");
 const {player} = require("../player");
 const food = require("../items/food");
 const { Random } = require("../utils/random.js");
 const logger = require("../utils/logger");
 const { GiftEvent } = require("./gift.js");
-
-const choices = ["Yes", "No"];
 
 class BeggarEvent extends Event {
 
@@ -45,7 +43,7 @@ class BeggarEvent extends Event {
     }
 
     #createQuestion() {       
-        return createListQuestion("beggar", `A beggar approaches you asking for ${this.amount} ${this.item.name}, will you fulfill the request`, choices);
+        return createConfirmQuestion("beggar", `A beggar approaches you asking for ${this.amount} ${this.item.name}, will you fulfill the request`);
     }
 }
 
