@@ -38,6 +38,14 @@ const ranges = {
         axe: new Range(4, 8)
     },
 
+    armour: {
+        helmet: new Range(4, 9),
+        chestplate: new Range(8, 15),
+        gauntlets: new Range(5, 9),
+        greeves: new Range(6, 10),
+        boots: new Range(5, 7)
+    },
+
     playerHealth: {
         hume: new Range(10, 16),
         orc: new Range(15, 22),
