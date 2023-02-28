@@ -6,6 +6,7 @@ const food = require("../items/food");
 const { Random } = require("../utils/random.js");
 const logger = require("../utils/logger");
 const { GiftEvent } = require("./gift.js");
+const items = require("../items/item");
 
 class BeggarEvent extends Event {
 
@@ -30,7 +31,7 @@ class BeggarEvent extends Event {
                 
                 await logger.log("#c:blue[the beggar thanks you for your generosity]");
 
-                new GiftEvent(armour.random());
+                new GiftEvent(items.random("armour", "weapon"));
 
                 await prompt("gift");
             } else {

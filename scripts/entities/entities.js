@@ -3,6 +3,7 @@ const armour = require("../items/armour");
 const food = require("../items/food");
 const logger = require("../utils/logger");
 const { ranges } = require("../utils/consts");
+const items = require("../items/item");
 
 const entities = ["Wolf", "Hume", "Orc", "Elf", "Goblin", "Lion"];
 const unfriendly = ["Lion", "Goblin", "Wolf"];
@@ -42,7 +43,7 @@ class Entity {
             let foodChance = 80 + player.luck;
 
             if(guideRandom <= itemChance) {
-                await player.gift(armour.random());
+                await player.gift(items.random("armour", "weapon"));
             } else if(guideRandom > itemChance && guideRandom <= foodChance) {
                 let amount = Math.floor((guideRandom / 2) / 10);
                 let f = food.random();
