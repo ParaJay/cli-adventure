@@ -38,7 +38,7 @@ async function getResponse(question) {
 async function prompt(questionName) {
     let response;
 
-    while(!response) response = await getResponse(questions[questionName.toLowerCase()]);
+    while(!response) response = (await getResponse(questions[questionName.toLowerCase()])).trim();
 
     return response;
 }
