@@ -10,6 +10,7 @@ const utils = require("./scripts/utils/utils.js");
 const { berry, meat, getItem } = require("./scripts/items/food");
 const {journal} = require("./scripts/journal");
 const ascii = require("./scripts/utils/ascii");
+const weapons = require("./scripts/items/weapon");
 
 const logger = require("./scripts/utils/logger");
 
@@ -128,7 +129,7 @@ async function init() {
         "prompt;weapon",
         "#c:green[you must find a way]"
     ], args.scriptDelay, args.scriptOutput);
-
+    
     player.init();
 
     main();
