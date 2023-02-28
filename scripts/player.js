@@ -106,8 +106,6 @@ class Player {
     async rest() {
         this.health += new Random().randint(4, 8);
         await logger.log("#c:green[you rest up]");
-
-        await this.postAction();
     }
 
     async eat(item) {
@@ -117,6 +115,8 @@ class Player {
             await logger.log("#c:green[you ate:] #c:blue[" + item.name + "]");
 
             this.health += item.health;
+
+            await this.action();
         }
 
         //TODO: random event for food poisoning
@@ -154,8 +154,6 @@ class Player {
 
             await logger.log(`#c:green[you found] #c:blue[${amount} berries]`);
         }
-
-        await this.postAction();
     }
 
     stats() {
@@ -165,20 +163,12 @@ class Player {
     async move(direction) {
         await logger.log(`#c:green[you moved:] #c:blue[${direction}]`);
 
-        await this.postAction();
+        await this.action();
     }
 
-    async postAction() {
-        let r = new Random().nextInt(100);
-
-        if(r <= 40) {
-            let event = events.random();
-            let decision;
-
-            if(event.question) decision = await prompt(event.name);
-
-            await event.handle(decision);
-        }
+    async action(type) {
+        if(type) await eval(`this.${type}();`);
+        await events.tryEvent();
     }
 
     async set(key) {   
