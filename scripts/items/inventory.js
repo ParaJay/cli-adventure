@@ -8,8 +8,7 @@ class Inventory {
     }
 
     addItem(item, amount=1) {
-        let owned = this.items[item.name];
-        let currentAmount = this.hasItem(item) ? owned : 0;
+        let currentAmount = this.count(item);
 
         this.items[item.name] = amount + currentAmount;
     }
