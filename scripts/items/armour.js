@@ -3,9 +3,7 @@ const {Range} = require("../utils/range");
 const utils = require("../utils/utils");
 const { Item } = require("./item");
 
-const armour = [
-    "Helmet", "Chestplate", "Gauntlets", "Greeves", "Boots"
-];
+const armour = ["Helmet", "Chestplate", "Gauntlets", "Greeves", "Boots"];
 
 const ranges = {
     helmet: new Range(4, 9),
@@ -33,5 +31,5 @@ function random() {
 }
 
 module.exports = {
-    random, generate
+    random, generate, armour
 }
