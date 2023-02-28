@@ -33,14 +33,7 @@ function initEvents() {
     events.register(new BeggarEvent());
 }
 
-async function main() {
-    if(player.health <= 0) {
-        await logger.log("#c:red[you died :(]");
-        return;
-    }
-
-    let decision = await prompt("main");
-
+async function handle(decision) {
     if(decision == "Exit") {
         let exit = await prompt("exit");
 
@@ -92,6 +85,17 @@ async function main() {
     }else {
         await eval(`player.${decision.toLowerCase()}();`);
     }
+}
+
+async function main() {
+    if(player.health <= 0) {
+        await logger.log("#c:red[you died :(]");
+        return;
+    }
+
+    let decision = await prompt("main");
+
+    await handle(decision);
 
     main();
 }
