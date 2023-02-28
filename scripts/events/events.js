@@ -1,4 +1,5 @@
 const {Random} = require("../utils/random");
+const { prompt } = require("../utils/inq");
 
 const events = [];
 
@@ -44,6 +45,19 @@ function random() {
     return events[0].randomize();
 }
 
+async function tryEvent() {
+    let r = new Random().nextInt(100);
+
+    if(r <= 40) {
+        let event = random();
+        let decision;
+
+        if(event.question) decision = await prompt(event.name);
+
+        await event.handle(decision);
+    }
+}
+
 function register(event) { events.push(event) };
 
-module.exports = { random, register, Event }
+module.exports = { random, register, Event, tryEvent }
