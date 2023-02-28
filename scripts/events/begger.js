@@ -36,7 +36,8 @@ class BeggarEvent extends Event {
 
                 await prompt("gift");
             } else {
-                this.handle("No");
+                await logger.log("#c:red[you don't have enough of] #c:blue[" + this.item.name + "]");
+                await this.handle("No");
             }
         } else {
             await logger.log("#c:blue[The beggar walks away...]");
