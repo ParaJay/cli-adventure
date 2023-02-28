@@ -1,35 +1,11 @@
 const {Random} = require("./utils/random");
-const {Range} = require("./utils/range");
 const events = require("./events/events");
 const {prompt} = require("./utils/inq");
 const {berry} = require("./items/food");
 const {journal} = require("./journal");
 const logger = require("./utils/logger")
 const {Inventory} = require("./items/inventory");
-
-const healthRanges = {
-    hume: new Range(10, 16),
-    orc: new Range(15, 22),
-    elf: new Range(12, 15),
-}
-
-const defenceRanges = {
-    hume: new Range(1, 4),
-    orc: new Range(3, 5),
-    elf: new Range(2, 4)
-}
-
-const weaponRanges = {
-    dagger: new Range(2, 5),
-    bow: new Range(3, 6),
-    axe: new Range(4, 8)
-}
-
-const weaponRace = {
-    dagger: "hume",
-    bow: "elf",
-    axe: "orc"
-}
+const { ranges, weaponRace } = require("./utils/consts");
 
 const equipmentList = ["Helmet", "Chestplate", "Gauntlets", "Greeves", "Boots"];
 
@@ -48,9 +24,9 @@ class Player {
         let sh = this.race.toLowerCase();
         let wlc = this.weapon.toLowerCase();
 
-        this.health = healthRanges[sh].random();
-        this.attack = weaponRanges[wlc];
-        this.defence = defenceRanges[sh].random();
+        this.health = ranges.playerHealth[sh].random();
+        this.attack = ranges.weapons[wlc];
+        this.defence = ranges.defence[sh].random();
 
         if(weaponRace[wlc] == sh) {
             this.attack.min *= 1.2;

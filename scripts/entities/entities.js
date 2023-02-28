@@ -1,52 +1,22 @@
 const {Random} = require("../utils/random");
-const {Range} = require("../utils/range");
 const armour = require("../items/armour");
 const food = require("../items/food");
 const logger = require("../utils/logger");
+const { ranges } = require("../utils/consts");
 
-const entities = [
-    "Wolf", "Hume", "Orc", "Elf", "Goblin", "Lion"
-];
-
+const entities = ["Wolf", "Hume", "Orc", "Elf", "Goblin", "Lion"];
 const unfriendly = ["Lion", "Goblin", "Wolf"];
-
-const healthRanges = {
-    wolf: new Range(5, 9),
-    hume: new Range(10, 15),
-    orc: new Range(12, 17),
-    elf: new Range(10, 13),
-    goblin: new Range(7, 10),
-    lion: new Range(8, 12)
-}
-
-const attackRanges = {
-    wolf: new Range(3, 6),
-    hume: new Range(4, 6),
-    orc: new Range(5, 9),
-    elf: new Range(4, 7),
-    goblin: new Range(2, 5),
-    lion: new Range(5, 7)
-}
-
-const defenceRanges = {
-    wolf: new Range(2, 4),
-    hume: new Range(1, 4),
-    orc: new Range(3, 5),
-    elf: new Range(2, 4),
-    goblin: new Range(1, 3),
-    lion: new Range(2, 5)
-}
 
 class Entity {
     constructor(name) {
         let sh = name.toLowerCase();
-        let attack = attackRanges[sh];
-        let health = healthRanges[sh];
+        let attack = ranges.attack[sh];
+        let health = ranges.entityHealth[sh];
 
         this.name = name;
         this.health = health.random();
         this.attack = attack;
-        this.defence = defenceRanges[sh].random();
+        this.defence = ranges.defence[sh].random();
         this.friendly = !unfriendly.includes(this.name);
     }
 
