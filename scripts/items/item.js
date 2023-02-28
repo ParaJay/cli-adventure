@@ -1,4 +1,4 @@
-const { Random } = require("../utils/utils");
+const { Random } = require("../utils/random");
 
 const lookup = {};
 const types = {};
@@ -20,13 +20,13 @@ class Item {
 }
 
 function random(type) {
-    return lookup[new Random().fromArray(Object.keys(types[type]))];
+    return new Random().fromArray(types[type]);
 }
 
 function register(item) {
     lookup[item.name] = item;
 
-    let typ = types[item.name];
+    let typ = types[item.getType().toLowerCase()];
     let registeredTypes = typ ? typ : [];
 
     registeredTypes.push(item);
