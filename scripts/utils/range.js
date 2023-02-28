@@ -4,6 +4,7 @@ class Range {
     constructor(min, max) {
         this.min = min;
         this.max = max;
+        this.mid = (this.min + this.max) / 2;
     }
 
     random() {
