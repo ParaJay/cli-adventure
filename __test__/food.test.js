@@ -1,11 +1,15 @@
 const food = require("../scripts/items/food");
 const {Player} = require("../scripts/player");
+const events = require("../scripts/events/events");
+const { StarEvent } = require("../scripts/events/star");
 
-function checkEat(item, expectedHealth) {
+events.register(new StarEvent());
+
+async function checkEat(item, expectedHealth) {
     let player = new Player();
 
-    player.addItem(item);
-    player.eat(item);
+    player.inventory.addItem(item);
+    await player.eat(item);
     
     expect(player.health).toBe(expectedHealth);
 }
